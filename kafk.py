@@ -5,7 +5,6 @@ from kazoo.client import KazooClient
 from kazoo.exceptions import NoNodeError
 from kafka import (KafkaClient, KafkaConsumer)
 
-
 class spoorerClient(object):
     def __init__(self, zookeeper_hosts, kafka_hosts, zookeeper_url='/', timeout=3, log_dir='/tmp/spoorer'):
         self.zookeeper_hosts = zookeeper_hosts
@@ -132,8 +131,5 @@ def spoorer(self):
 
 
 if __name__ == '__main__':
-    check = spoorerClient(zookeeper_hosts=‘zookeeperIP地址：端口
-    ', zookeeper_url=‘znode节点', kafka_hosts =‘kafkaIP：PORT
-    ', log_dir=' / tmp / log / spoorer
-    ', timeout=3)
+    check = spoorerClient(zookeeper_hosts=‘zookeeperIP:port',zookeeper_url=‘znode_node',kafka_hosts ='kafkaIP:port', log_dir='/tmp/log/spoorer',timeout=3)
     print check.spoorer()
