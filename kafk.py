@@ -15,7 +15,7 @@ class spoorerClient(object):
         self.kafka_logsize = {}
         self.result = []
 
-    self.log_day_file = log_dir + '/' + 'spoorer_day.log.' + str(time.strftime("%Y-%m-%d", time.localtime()))
+    self.log_day_file = log_dir + '/' + 'spoorer_day.log' + str(time.strftime("%Y-%m-%d", time.localtime()))
     self.log_keep_day = 1
 
     try:
@@ -29,19 +29,17 @@ class spoorerClient(object):
         if self.white_topic_group is None:
             self.white_topic_group = {}
 
-    if not os.path.exists(self.log_dir):     os.mkdir(self.log_dir)
-
+    if not os.path.exists(self.log_dir):
+        os.mkdir(self.log_dir)
 
 for logfile in [x for x in os.listdir(self.log_dir) if x.split('.')[-1] != 'log' and x.split('.')[-1] != 'swp']:
-    if int(time.mktime(time.strptime(logfile.split('.')[-1], '%Y-%m-%d'))) < int(
-            time.time()) - self.log_keep_day * 86400:
+    if int(time.mktime(time.strptime(logfile.split('.')[-1], '%Y-%m-%d'))) < int(time.time()) - self.log_keep_day * 86400:
         os.remove(self.log_dir + '/' + logfile)
 
 if zookeeper_url == '/':
     self.zookeeper_url = zookeeper_url
 else:
     self.zookeeper_url = zookeeper_url + '/'
-
 
 def spoorer(self):
     try:
@@ -113,7 +111,7 @@ def spoorer(self):
                 offset = kafka_consumer.get_partition_offsets(kafka_topic, partition, -1, 1)[0]
                 self.kafka_logsize[kafka_topic][partition] = offset
 
-        with open(self.log_file, 'w') as f1, open(self.log_day_file, 'a') as f2:
+        with open(self.log_file, 'w') as f1 , open(self.log_day_file, 'a') as f2:
 
             for metric in self.result:
                 logsize = self.kafka_logsize[metric['topic']][metric['partition']]
@@ -131,5 +129,5 @@ def spoorer(self):
 
 
 if __name__ == '__main__':
-    check = spoorerClient(zookeeper_hosts=‘zookeeperIP:port',zookeeper_url=‘znode_node',kafka_hosts ='kafkaIP:port', log_dir='/tmp/log/spoorer',timeout=3)
+    check = spoorerClient(zookeeper_hosts='zookeeperIP:port',zookeeper_url=‘znode_node',kafka_hosts ='kafkaIP:port',log_dir='/tmp/log/spoorer',timeout=3)
     print check.spoorer()
