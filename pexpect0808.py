@@ -6,7 +6,15 @@ import pexpect
 child = pexpect.spawn('ssh 192.168.1.23')
 fout = file('mylog.txt','w')
 child.logfile = fout
-child.expect()
-pexpect("yes/no)?")
-pexpect.
+
+child.expect("password:")
+child.sendline("123456")
+
+child.expect("#")
+child.sendline("ifconfig")
+child.expect("#")
+
+
+
+
 
