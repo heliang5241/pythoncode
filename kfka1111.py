@@ -1,8 +1,11 @@
 # -*- coding:utf-8 -*-
+
 import os, sys, time, json, yaml
+from kafka import SimpleClient
 from kazoo.client import KazooClient
 from kazoo.exceptions import NoNodeError
 from kafka import (KafkaClient, KafkaConsumer)
+
 
 class spoorerClient(object):
     def __init__(self, zookeeper_hosts, kafka_hosts, zookeeper_url='/', timeout=3, log_dir='/tmp/spoorer'):
@@ -13,7 +16,6 @@ class spoorerClient(object):
         self.log_file = log_dir + '/' + 'spoorer.log'
         self.kafka_logsize = {}
         self.result = []
-
         self.log_day_file = log_dir + '/' + 'spoorer_day.log.' + str(time.strftime("%Y-%m-%d", time.localtime()))
         self.log_keep_day = 1
 
@@ -25,15 +27,16 @@ class spoorerClient(object):
             sys.exit(1)
         else:
             f.close()
-            if self.white_topic_group is None:
-                self.white_topic_group = {}
+        if self.white_topic_group is None:
+            self.white_topic_group = {}
 
         if not os.path.exists(self.log_dir):
             os.mkdir(self.log_dir)
 
+
         for logfile in [x for x in os.listdir(self.log_dir) if x.split('.')[-1] != 'log' and x.split('.')[-1] != 'swp']:
             if int(time.mktime(time.strptime(logfile.split('.')[-1], '%Y-%m-%d'))) < int(
-                    time.time()) - self.log_keep_day * 86400:
+                time.time()) - self.log_keep_day * 86400:
                 os.remove(self.log_dir + '/' + logfile)
 
         if zookeeper_url == '/':
@@ -43,9 +46,7 @@ class spoorerClient(object):
 
     def spoorer(self):
         try:
-            kafka_client = SimpleClient(self.kafka_hosts,timeout=self.timeout)
-            # kafka_client = KazooClient(self.kafka_hosts,timeout=self.timeout)
-
+            kafka_client = SimpleClient(self.kafka_hosts, timeout=self.timeout)
         except Exception as e:
             print "Error, cannot connect kafka broker."
             sys.exit(1)
@@ -86,7 +87,6 @@ class spoorerClient(object):
                         base_path = 'consumers/%s/%s/%s/%s' % (group, '%s', topic, partition)
                         owner_path, offset_path = base_path % 'owners', base_path % 'offsets'
                         offset = zookeeper_client.get(self.zookeeper_url + offset_path)[0]
-
                         try:
                             owner = zookeeper_client.get(self.zookeeper_url + owner_path)[0]
                         except NoNodeError as e:
@@ -115,6 +115,7 @@ class spoorerClient(object):
 
             f1 = open(self.log_file, 'w')
             f2 = open(self.log_day_file, 'a')
+
             for metric in self.result:
                 logsize = self.kafka_logsize[metric['topic']][metric['partition']]
                 metric['logsize'] = int(logsize)
@@ -130,8 +131,6 @@ class spoorerClient(object):
         return ''
 
 if __name__ == '__main__':
-    check = spoorerClient(zookeeper_hosts='192.168.10.154:2181',
-    zookeeper_url='/', kafka_hosts ='192.168.10.154:9092',
-    log_dir='/tmp/log/spoorer',
-    timeout=3)
-    print check.spoorer()
+    # check = spoorerClient(zookeeper_hosts='192.168.10.156:2181',zookeeper_url='/',kafka_hosts='192.168.10.157:9092,log_dir='/data/python-scripts/inspector/AccountInspector/otherInspector/spoorer',timeout=3)
+    check = spoorerClient(zookeeper_hosts='192.168.10.156:2181', zookeeper_url='/', kafka_hosts='192.168.10.157:9092',log_dir='/data/python-scripts/inspector/AccountInspector/otherInspector/spoorer', timeout=3)
+    # print check.spoorer()
