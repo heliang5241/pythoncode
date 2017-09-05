@@ -9,7 +9,7 @@
 4、使用欧冠代替2014
 5、创建另一个文件test2.txt,写入本文件的内容
 """
-def getTxt():
+def eg1():
     f = open('tmp.txt','w')
     txt = """今年是2014年
 2014年你好
@@ -17,11 +17,22 @@ def getTxt():
     """
     f.write(txt)
     f.close()
-def chuli():
+def eg2():
     f = open('tmp.txt','r+')
-    print f.read()
+    str1 = f.read().replace("\n","")
+    # f.close()
+    str2 = str1.replace("2014","欧冠")
+
+    f = open('tmp.txt','w')
+    f1 = open("test2.txt",'w')
+    print str2
+    # print len(str1)
+    f1.write(str2)
+    f1.close()
+    f.write(str2)
+    f.close()
 if __name__ == '__main__':
-    # getTxt()
-    chuli()
+    # eg1()
+    eg2()
 
 

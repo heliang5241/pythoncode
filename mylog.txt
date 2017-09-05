@@ -1,0 +1,47 @@
+root@192.168.1.23's password: 123456
+
+Last login: Wed Aug  9 14:17:43 2017 from 192.168.1.43
+[[0;34mroot[0;37m@[0;35mcentos65-1-23[0;33m ~[0;37m][0;31m#[00m ifconfig
+ifconfig
+eth0      Link encap:Ethernet  HWaddr 00:0C:29:69:33:81  
+          inet addr:192.168.1.23  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::20c:29ff:fe69:3381/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:17852 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1071 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:1922592 (1.8 MiB)  TX bytes:169118 (165.1 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:18 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:18 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:1152 (1.1 KiB)  TX bytes:1152 (1.1 KiB)
+
+[[0;34mroot[0;37m@[0;35mcentos65-1-23[0;33m ~[0;37m][0;31m#[00m root@192.168.1.64's password: 123456
+
+Last login: Wed Aug  9 14:17:43 2017 from 192.168.1.43
+[[0;34mroot[0;37m@[0;35mcentos65-1-64[0;33m ~[0;37m][0;31m#[00m ifconfig
+ifconfig
+eth0      Link encap:Ethernet  HWaddr 00:0C:29:E9:2A:8F  
+          inet addr:192.168.1.64  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::20c:29ff:fee9:2a8f/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:6984 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:3934 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:7596512 (7.2 MiB)  TX bytes:338394 (330.4 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:18 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:18 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:1152 (1.1 KiB)  TX bytes:1152 (1.1 KiB)
+
+[[0;34mroot[0;37m@[0;35mcentos65-1-64[0;33m ~[0;37m][0;31m#[00m 
