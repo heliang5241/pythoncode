@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 console-consumer-76670:
 console-consumer-60781:
 console-consumer-30234:
@@ -14,3 +15,8 @@ test-consumer-group:
 console-consumer-82316:
 console-consumer-16992:
 console-consumer-842:
+=======
+kafka_topic_name:
+    group_name1,
+    group_name2,
+>>>>>>> c59db17f218135719e06e9301a64e7d5deeb4549

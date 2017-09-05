@@ -13,7 +13,10 @@ child.sendline("123456")
 child.expect("#")
 child.sendline("ifconfig")
 child.expect("#")
+<<<<<<< HEAD
 for i in range()
+=======
+>>>>>>> c59db17f218135719e06e9301a64e7d5deeb4549
 
 
 
